@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import { ReactForm } from '../components/ReactForm';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -39,6 +40,8 @@ import Card from '../components/Card.astro';
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
 		<ul role="list" class="link-card-grid">
+			<ReactForm />
+			<ReactForm client:load />
 			<Card
 				href="https://docs.astro.build/"
 				title="Documentation"
