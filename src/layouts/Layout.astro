@@ -1,56 +1,85 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-		/>
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="no">
+  <head>
+    <!-- Bulma CSS Framework -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <title>{title}</title>
+    <style>
+      main {
+        display: grid;
+        grid-template-columns: 16em 1fr;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="has-background-primary p-4">
+      <div class="container">
+        <h1 class="title has-text-white">Kjapp faktura!</h1>
+        <nav>
+          <a href="/" class="has-text-white">Hjem</a>
+          <a href="/InvoiceStatic" class="has-text-white">Statisk</a>
+          <a href="/InvoiceJoy" class="has-text-white">SPA/SSR</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="menu-wrapper" style="padding: 16px;">
+        <aside class="menu">
+          <p class="menu-label title">Generelt</p>
+          <ul class="menu-list">
+            <li><a>Dashboard</a></li>
+            <li><a>Kunder</a></li>
+          </ul>
+          <p class="menu-label title">Fakturering</p>
+          <ul class="menu-list">
+            <ul>
+              <li><a>Fakturaoversikt</a></li>
+              <li><a>Ny faktura</a></li>
+              <li><a>Innstillinger</a></li>
+            </ul>
+          </ul>
+          <p class="menu-label title">Prosjekt</p>
+          <ul class="menu-list">
+            <li><a>Prosjektoversikt</a></li>
+            <li><a>Nytt prosjekt</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div>
+        <slot />
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Bulma</strong> by <a href="https://jgthms.com"
+            >Jeremy Thomas</a
+          >. The source code is licensed
+          <a href="https://opensource.org/license/mit">MIT</a>. The website
+          content is licensed
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//"
+            >CC BY NC SA 4.0</a
+          >.
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

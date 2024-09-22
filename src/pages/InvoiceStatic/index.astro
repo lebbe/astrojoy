@@ -1,0 +1,143 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Static render">
+  <section class="section" style="max-width: 800px;">
+    <h1 class="title">Faktura Registrering</h1>
+    <form action="/api/invoice" method="post">
+      <div class="field">
+        <label for="name" class="label">Navn *</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Skriv inn ditt navn"
+            minlength="2"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address" class="label">Adresse *</label>
+        <input
+          class="input"
+          type="text"
+          id="address"
+          name="address"
+          required
+          placeholder="Skriv inn din adresse"
+        />
+      </div>
+
+      <div class="field">
+        <label for="email" class="label">E-post *</label>
+        <input
+          class="input"
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Skriv inn din e-postadresse"
+        />
+      </div>
+      <div class="field">
+        <label for="product" class="label">Produkt *</label>
+        <input
+          class="input"
+          type="text"
+          id="product"
+          name="product"
+          required
+          placeholder="Beskriv produktet"
+        />
+      </div>
+      <div class="field">
+        <label for="quantity" class="label">Antall *</label>
+        <input
+          class="input"
+          type="number"
+          id="quantity"
+          name="quantity"
+          required
+          min="1"
+          placeholder="Antall produkter"
+        />
+      </div>
+      <div class="field">
+        <label for="price" class="label">Pris per enhet (NOK) *</label>
+        <input
+          class="input"
+          type="number"
+          id="price"
+          name="price"
+          required
+          min="1"
+          step="0.01"
+          placeholder="Pris per enhet"
+        />
+      </div>
+      <div class="field">
+        <label for="total" class="label">Totalpris (NOK) *</label>
+        <input
+          class="input"
+          type="number"
+          id="total"
+          name="total"
+          required
+          readonly
+          placeholder="Beregn totalpris automatisk"
+          step="0.01"
+        />
+      </div>
+      <div class="field">
+        <label for="notes" class="label">Merknader</label>
+        <textarea
+          class="textarea"
+          id="notes"
+          name="notes"
+          rows="4"
+          placeholder="Andre detaljer om bestillingen"></textarea>
+      </div>
+
+      <button class="button is-primary is-large is-fullwidth" type="submit"
+        >Send faktura!</button
+      >
+    </form>
+  </section>
+
+  <script>
+    const priceInput = document.getElementById("price");
+    const quantityInput = document.getElementById("quantity");
+    const totalInput = document.getElementById("total");
+
+    function calculateTotal() {
+      if (
+        !(priceInput instanceof HTMLInputElement) ||
+        !(quantityInput instanceof HTMLInputElement) ||
+        !(totalInput instanceof HTMLInputElement)
+      ) {
+        throw new Error("Missing input fields");
+      }
+      const price = parseFloat(priceInput.value) || 0;
+      const quantity = parseInt(quantityInput.value) || 0;
+      totalInput.value = (price * quantity).toFixed(2);
+    }
+
+    if (!priceInput || !quantityInput) {
+      throw new Error("Missing input fields");
+    }
+
+    priceInput.addEventListener("input", calculateTotal);
+    quantityInput.addEventListener("input", calculateTotal);
+  </script>
+</Layout>
+
+<style>
+  :user-invalid {
+    border-color: var(--bulma-danger);
+  }
+</style>

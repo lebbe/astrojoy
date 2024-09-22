@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import { ReactForm } from '../components/ReactForm';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Forsiden">
 	<main>
 		<svg
 			class="astro-a"
@@ -40,8 +39,7 @@ import { ReactForm } from '../components/ReactForm';
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
 		<ul role="list" class="link-card-grid">
-			<ReactForm />
-			<ReactForm client:load />
+
 			<Card
 				href="https://docs.astro.build/"
 				title="Documentation"
@@ -77,10 +75,7 @@ import { ReactForm } from '../components/ReactForm';
 		line-height: 1.6;
 	}
 	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
+
 		width: 220px;
 		height: auto;
 		z-index: -1;
