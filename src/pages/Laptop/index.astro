@@ -1,0 +1,40 @@
+---
+import {
+  AddToCartButton,
+  ProductDescription,
+  ProductImage,
+  ProductPrice,
+  ProductSpecifications,
+  ProductTitle,
+} from "../../components/Components.tsx";
+import Layout from "../../layouts/Layout.astro";
+
+const laptop = {
+  title: "High-End Gaming Laptop",
+  imageSrc: "https://example.com/laptop.jpg",
+  imageAlt: "Gaming Laptop Image",
+  description:
+    "This is a powerful gaming laptop with the latest hardware and features, perfect for gamers and professionals.",
+  specifications: [
+    "Intel Core i7 Processor",
+    "16GB RAM",
+    "512GB SSD",
+    "NVIDIA RTX 3060",
+    '15.6" Full HD Display',
+    "RGB Backlit Keyboard",
+  ],
+  price: "24,999",
+  priceNOK: 24999
+};
+---
+
+<Layout title={laptop.title}>
+  <div>
+    <ProductTitle title={laptop.title} />
+    <ProductImage src={laptop.imageSrc} alt={laptop.imageAlt} />
+    <ProductDescription description={laptop.description} />
+    <ProductSpecifications specifications={laptop.specifications} />
+    <ProductPrice price={laptop.price} />
+    <AddToCartButton client:load price={laptop.priceNOK} />
+  </div>
+</Layout>
